@@ -1,0 +1,17 @@
+<h1>Classify</h1>
+<div><%= @tweet.text %></div>
+
+<%= form_for @tweet do |f| %>
+	<%= f.hidden_field :sentiment, :value => 1 %>
+	<%= f.submit "Positive" %>
+<% end %>
+
+<%= form_for @tweet do |f| %>
+	<%= f.hidden_field :sentiment, :value => 0 %>
+	<%= f.submit 'Negative' %>
+<% end %>
+
+<%= form_for @tweet do |f| %>
+	<%= f.hidden_field :sentiment, :value => -1 %>
+	<%= f.submit 'Not Sure' %>
+<% end %>
