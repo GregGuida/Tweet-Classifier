@@ -1,5 +1,7 @@
 <h1>Classify</h1>
-<div><%= @tweet.text %></div>
+<%= button_to logout_path %>
+
+<div class="tile tweet"><%= @tweet.text %></div>
 
 <%= form_for @tweet do |f| %>
 	<%= f.hidden_field :sentiment, :value => 1 %>

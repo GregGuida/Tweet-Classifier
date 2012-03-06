@@ -13,3 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+	 var resize = function () {
+	 	var $main = $('#main'),
+	 		offset = ($(window).height() - $main.outerHeight())/2;
+
+	 	$main.css('margin-top',Math.max(offset,20));
+	 }
+
+	 resize();
+
+	 $(window).resize(resize);
+});
