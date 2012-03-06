@@ -11,13 +11,14 @@ task :pulltweets => :environment do
 
 	  http.request request do |response|
 	    response.read_body do |chunk|
-	    	break unless numtweets < 10
+	    	break unless numtweets < 100
 	    	tweet = JSON.parse(chunk)
-	    	next unless tweet['user']['lang'] == 'en'
-	    	numtweets += 1
-	    	#puts tweet['id']
-	    	#puts tweet['text']
-	    	Tweet.create(:tid => tweet['id'], :text => tweet['text'])
+	    	if tweet['user'] && tweet['user']['lang'] && tweet['user']['lang'] == 'en'
+	    		numtweets += 1
+	    		#puts tweet['id']
+	    		#puts tweet['text']
+	    		Tweet.create(:tid => tweet['id'], :text => tweet['text'])
+	    	end
 	    end
 	    break
 	  end
