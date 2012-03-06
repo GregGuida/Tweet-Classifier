@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20120303044940) do
     t.integer  "sentiment",                 :default => -1
     t.string   "username",                  :default => "null"
     t.string   "text",       :limit => 144
-    t.integer  "tid"
+    t.string   "tid",        :limit => 18
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
   end

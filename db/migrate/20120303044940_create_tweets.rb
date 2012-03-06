@@ -4,7 +4,7 @@ class CreateTweets < ActiveRecord::Migration
       t.integer :sentiment, :default => -1
       t.string :username, :default => :null
       t.string :text, :limit => 144
-      t.integer :tid
+      t.string :tid, :limit => 18
 
       t.timestamps
     end
