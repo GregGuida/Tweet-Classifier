@@ -61,7 +61,7 @@ class TweetsController < ApplicationController
     
     respond_to do |format|
       if @tweet.update_attributes(:sentiment=>params[:tweet][:sentiment],:username=>@username)
-        format.html { redirect_to '/', notice: 'Tweet was successfully updated.' }
+        format.html { redirect_to '/', notice: 'Tweet was successfully classified as #{{-1=>"not sure",0=>"negative",1=>"positive"}[params[:tweet][:sentiment]]}.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

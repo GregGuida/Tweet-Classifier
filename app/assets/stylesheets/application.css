@@ -58,3 +58,26 @@ body {
     -moz-text-shadow:1px 1px 0 rgba(255,255,255,0.5);
     -webkit-text-shadow:1px 1px 0 rgba(255,255,255,0.5);
 }
+
+#main .edit_tweet {
+    float: left;
+    margin: 59px;
+}
+
+#main .edit_tweet input[type='submit'] {
+    font-size: 42px;
+    line-height: 54px;
+    padding:10px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+}
+
+#main .logout {
+    float: right;
+}
+
+
+/*
+ * EOF
+ */
+

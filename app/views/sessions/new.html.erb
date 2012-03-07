@@ -1,7 +1,7 @@
 <h1>Sessions#new</h1>
 <%= form_tag login_path, :method => 'post' do %>
 	<fieldset>
-	<legend>Please Log In</legend>
+	<legend>Please Log In or <%= link_to 'sign up', new_user_path %> </legend>
 	<div>
 		<label for="name">Name:</label>
 		<%= text_field_tag :username, params[:username] %>

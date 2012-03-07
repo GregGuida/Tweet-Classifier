@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
 		session.delete(:user_id)
-		redirect_to store_url, :notice => "Logged out"
+		redirect_to login_url, :notice => "Logged out"
   end
 end

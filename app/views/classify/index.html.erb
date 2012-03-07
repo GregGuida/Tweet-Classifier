@@ -1,19 +1,19 @@
+<%= button_to 'Logout', logout_path, :method => :delete, :class => 'logout btn'%>
 <h1>Classify</h1>
-<%= button_to logout_path %>
 
 <div class="tile tweet"><%= @tweet.text %></div>
 
 <%= form_for @tweet do |f| %>
 	<%= f.hidden_field :sentiment, :value => 1 %>
-	<%= f.submit "Positive" %>
+	<%= f.submit "Positive", :class => 'btn-primary' %>
 <% end %>
 
 <%= form_for @tweet do |f| %>
 	<%= f.hidden_field :sentiment, :value => 0 %>
-	<%= f.submit 'Negative' %>
+	<%= f.submit 'Negative', :class => 'btn-danger' %>
 <% end %>
 
 <%= form_for @tweet do |f| %>
 	<%= f.hidden_field :sentiment, :value => -1 %>
-	<%= f.submit 'Not Sure' %>
+	<%= f.submit 'Not Sure', :class => 'btn-inverse' %>
 <% end %>
