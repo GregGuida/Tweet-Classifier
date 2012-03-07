@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    before_filter :authorize
-    @users = User.order(:name => 'DESC')
+    authorize
+
+    @users = User.order('username DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    before_filter :authorize
+    authorize
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    before_filter :authorize
+    authorize
     @user = User.find(params[:id])
   end
 
