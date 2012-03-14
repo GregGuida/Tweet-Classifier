@@ -3,17 +3,17 @@
 
 <div class="tile tweet"><%= @tweet.text %></div>
 
-<%= form_for @tweet do |f| %>
+<%= form_for @tweet, :html => { :class => 'edit_tweet positive' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => 1 %>
 	<%= f.submit "Positive", :class => 'btn-primary' %>
 <% end %>
 
-<%= form_for @tweet do |f| %>
+<%= form_for @tweet, :html => { :class => 'edit_tweet negative' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => 0 %>
 	<%= f.submit 'Negative', :class => 'btn-danger' %>
 <% end %>
 
-<%= form_for @tweet do |f| %>
+<%= form_for @tweet, :html => { :class => 'edit_tweet unsure' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => -1 %>
 	<%= f.submit 'Not Sure', :class => 'btn-inverse' %>
 <% end %>
