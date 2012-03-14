@@ -12,18 +12,36 @@
 			Total
 		</th>
 	</tr>
+	<% curr_user = @tweets.first.username %>
+	<% user_total = 0 %>
 	<% @tweets.each do |tweet_group| %>
-	<tr>
-		<td>
-			<%= tweet_group.username or "Unclassified" %>
-		</td>
-		<td>
-			<%= @sentiment_values[tweet_group.sentiment] %>
-		</td>
-		<td>
-			<%= tweet_group.count %>
-		</td>
-	</tr>
+		<% if curr_user != tweet_group.username %>
+			<tr>
+				<td style="background-color:#88c;">
+					<%= curr_user %>
+				</td>
+				<td style="background-color:#88c;">
+					Total
+				</td>
+				<td style="background-color:#88c;">
+					<%= user_total %>
+				</td>
+			</tr>
+			<% curr_user = @tweets.first.username %>
+			<% user_total = 0 %>
+		<% end %>
+		<% user_total += tweet_group.count.to_i %>
+		<tr>
+			<td>
+				<%= tweet_group.username != 'null' ? tweet_group.username : "Unclassified" %>
+			</td>
+			<td>
+				<%= @sentiment_values[tweet_group.sentiment] %>
+			</td>
+			<td>
+				<%= tweet_group.count %>
+			</td>
+		</tr>
 	<% end %>
 </table>
 
