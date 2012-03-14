@@ -27,7 +27,7 @@
 					<%= user_total %>
 				</td>
 			</tr>
-			<% curr_user = @tweets.first.username %>
+			<% curr_user = tweet_group.username %>
 			<% user_total = 0 %>
 		<% end %>
 		<% user_total += tweet_group.count.to_i %>
