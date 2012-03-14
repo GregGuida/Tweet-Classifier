@@ -13,7 +13,7 @@ task :pulltweets => :environment do
 	    response.read_body do |chunk|
 	    	break unless numtweets < 100
 	    	tweet = JSON.parse(chunk)
-	    	if tweet['user'] && tweet['user']['lang'] && tweet['user']['lang'] == 'en'
+	    	if tweet['user'] && tweet['user']['lang'] && tweet['user']['lang'] == 'en' && tweet['text'].length <= 144
 	    		numtweets += 1
 	    		#puts tweet['id']
 	    		#puts tweet['text']

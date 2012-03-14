@@ -1,2 +1,29 @@
-<h1>Statistics#index</h1>
-<p>Find me in app/views/statistics/index.html.erb</p>
+<%= button_to 'Logout', logout_path, :method => :delete, :class => 'logout btn'%>
+<h1>Statistics</h1>
+<table class="table-striped table-bordered">
+	<tr>
+		<th>
+			Username
+		</th>
+		<th>
+			Sentiment Value
+		</th>
+		<th>
+			Total
+		</th>
+	</tr>
+	<% @tweets.each do |tweet_group| %>
+	<tr>
+		<td>
+			<%= tweet_group.username or "Unclassified" %>
+		</td>
+		<td>
+			<%= @sentiment_values[tweet_group.sentiment] %>
+		</td>
+		<td>
+			<%= tweet_group.count %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
