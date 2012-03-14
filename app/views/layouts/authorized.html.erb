@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TweetClassifier</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<div id="main" class="row">
+			<div class="tabbable tabs-left">
+			  <ul class="nav nav-tabs">
+			    <li class="<%= 'active' unless @current_controller != 'classify' %>"><%= link_to 'Classify', '/' %></li>
+			    <li class="<%= 'active' unless @current_controller != 'statistics' %>"><%= link_to 'Statistics', '/statistics/' %></li>
+			    <li class="<%= 'active' unless @current_controller != 'users' %>"><%= link_to 'Users', users_path %></li>
+			    <li class="<%= 'active' unless @current_controller != 'tweets' %>"><%= link_to 'Tweets', tweets_path %></li>
+			  </ul>
+			  <div class="tab-content">
+			    <%= yield %>
+			  </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
