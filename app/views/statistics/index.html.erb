@@ -1,6 +1,6 @@
 <%= button_to 'Logout', logout_path, :method => :delete, :class => 'logout btn'%>
 <h1>Statistics</h1>
-<table class="table-striped table-bordered">
+<table class="table-striped table-bordered statistics-table">
 	<tr>
 		<th>
 			Username
@@ -14,6 +14,7 @@
 	</tr>
 	<% curr_user = @tweets.first.username %>
 	<% user_total = 0 %>
+	<% user_groups = {} %>
 	<% @tweets.each do |tweet_group| %>
 		<% if curr_user != tweet_group.username %>
 			<tr>
@@ -27,6 +28,7 @@
 					<%= user_total %>
 				</td>
 			</tr>
+			<% user_groups[curr_user] = user_total %>
 			<% curr_user = tweet_group.username %>
 			<% user_total = 0 %>
 		<% end %>
@@ -44,4 +46,45 @@
 		</tr>
 	<% end %>
 </table>
+<div id="user_breakdown"></div>
+<div id="sentiment_breakdown"></div>
+<%= javascript_include_tag "https://www.google.com/jsapi" %>
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	// first do the user breakdown
+        var user_data = new google.visualization.DataTable();
+        user_data.addColumn('string', 'username');
+        user_data.addColumn('number', 'tweets classified');
+        user_data.addRows([
+        	<%= user_groups.collect{|k,v| "['#{k}', #{v}]"}.join(', ') %>
+        ]);
+
+        var options = {
+          title: 'Classification Breakdown by User'
+        };
+
+        var user_chart = new google.visualization.PieChart(document.getElementById('user_breakdown'));
+        user_chart.draw(user_data, options);
+
+        // then do sentiment
+        var sentiment_data = new google.visualization.DataTable();
+        sentiment_data.addColumn('string', 'sentiment value');
+        sentiment_data.addColumn('number', 'tweets classified');
+        sentiment_data.addRows([
+        	<%= @sentiment_groups.collect{|k,v| "['#{@sentiment_values[k]}', #{v}]"}.join(', ') %>
+        ]);
+
+        var options = {
+          title: 'Classification Breakdown by Sentiment'
+        };
+
+        var sentiment_chart = new google.visualization.PieChart(document.getElementById('sentiment_breakdown'));
+        sentiment_chart.draw(sentiment_data, options);
+      }
+</script>
+
+
+
 
