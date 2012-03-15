@@ -48,4 +48,5 @@ class User < ActiveRecord::Base
     def generate_salt 
         self.salt = self.object_id.to_s + rand.to_s
     end
+    
 end

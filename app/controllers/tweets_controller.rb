@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tweets }
+      format.csv { render text: "text,sentiment\n #{ @tweets.select!{ |t| t.sentiment != -1 }.collect{|t| t.text.gsub(/,/,'') + ", " + (t.sentiment==0 ?"neg":"pos") }.join("\n")}" }
     end
   end
 
