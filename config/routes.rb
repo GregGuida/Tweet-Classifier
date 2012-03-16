@@ -16,10 +16,6 @@ TweetClassifier::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  resources :tweets
-
-  resources :users
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -28,6 +24,8 @@ TweetClassifier::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   match 'statistics/' => 'statistics#index'
+  match 'tweets/tagged/' => 'tweets#tagged'
+  match 'tweets/untagged/' => 'tweets#untagged'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -47,6 +45,10 @@ TweetClassifier::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
+  resources :tweets
+
+  resources :users
 
   # Sample resource route with sub-resources:
   #   resources :products do

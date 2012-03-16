@@ -5,15 +5,15 @@
 
 <%= form_for @tweet, :html => { :class => 'edit_tweet positive' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => 1 %>
-	<%= f.submit "Positive", :class => 'btn-primary' %>
+	<%= f.submit "Positive", :class => 'btn btn-primary' %>
 <% end %>
 
 <%= form_for @tweet, :html => { :class => 'edit_tweet negative' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => 0 %>
-	<%= f.submit 'Negative', :class => 'btn-danger' %>
+	<%= f.submit 'Negative', :class => 'btn btn-danger' %>
 <% end %>
 
 <%= form_for @tweet, :html => { :class => 'edit_tweet unsure' } do |f| %>
 	<%= f.hidden_field :sentiment, :value => -1 %>
-	<%= f.submit 'Not Sure', :class => 'btn-inverse' %>
+	<%= f.submit 'Not Sure', :class => 'btn btn-inverse' %>
 <% end %>
