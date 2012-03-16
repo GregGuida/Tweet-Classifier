@@ -11,7 +11,7 @@ class Tweet < ActiveRecord::Base
 		#remove hash from Hashtags
 		result = result.gsub('#',' ')
 		#replace . , ! ? $ with ' '
-		result = result.gsub(/\.|,|!|\?|\^|\$|\*|\+|=|%|~|/,' ')
+		result = result.gsub(/\.|,|!|\?|\^|\$|\*|\+|=|%|~/,' ')
 		#remove digits
 		result = result.gsub(/\s\d+\s/,' ')
 
