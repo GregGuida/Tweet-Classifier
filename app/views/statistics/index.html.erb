@@ -12,7 +12,7 @@
 			Total
 		</th>
 	</tr>
-	<% curr_user = @tweets.first.username %>
+	<% curr_user = @tweets.first.username if @tweets.first %>
 	<% user_total = 0 %>
 	<% user_groups = {} %>
 	<% @tweets.each do |tweet_group| %>
