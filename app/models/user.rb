@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
         end
  
         def encrypt_password(password, salt)
+            # lol
             Digest::SHA2.hexdigest( password + "apple" + salt )
         end
 
