@@ -1,21 +1,19 @@
 class Tweet < ActiveRecord::Base
 
-	def self.sanitize ( text )
-		url_regex = /(([\w-]+:\/\/?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/)))/i
-		result = ""
+  URL_REGEX = /(([\w-]+:\/\/?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/)))/i
 
-		#Remove URLs
-		result = text.gsub(url_regex,' ')
-		#Remove handles
-		result = result.gsub(/@\w*/,' ')
-		#remove hash from Hashtags
-		result = result.gsub('#',' ')
-		#replace . , ! ? $ with ' ' \n
-		result = result.gsub(/\.|,|!|\?|\^|\$|\*|\+|=|%|~|\n/,' ')
-		#remove digits
-		result = result.gsub(/\s\d+\s/,' ')
-
-		return result
-	end
-
+  def self.sanitize ( text )
+    #Remove URLs
+    #Remove handles
+    #remove hash from Hashtags
+    #replace . , ! ? $ with ' ' \n
+    #remove digits
+    # remove leading / trailing space
+    text.gsub(Tweet::URL_REGEX, ' ')
+    .gsub(/@\w*/,' ')
+    .gsub('#',' ')
+    .gsub(/\.|,|!|\?|\^|\$|\*|\+|=|%|~|\n/,' ')
+    .gsub(/\s\d+\s/,' ')
+    .strip
+  end
 end
