@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @tweets }
-      format.csv { render text: "text,sentiment\n #{ @tweets.collect{|t| Tweet.sanitize(t.text) + ', ' + (t.sentiment==0 ? 'neg' : 'pos' ) }.join("\n") }" }
+      format.csv { render text: "text,sentiment\n#{ @tweets.collect{|t| Tweet.sanitize(t.text) + ',' + (t.sentiment==0 ? 'neg' : 'pos' ) }.join("\n") }" }
     end
   end
 
@@ -19,7 +19,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @tweets }
-      format.csv { render text: "text,sentiment\n #{ @tweets.collect{|t| Tweet.sanitize(t.text) }.join("\n") }" }
+      format.csv { render text: "text,sentiment\n#{ @tweets.collect{|t| Tweet.sanitize(t.text) }.join("\n") }" }
     end
   end
 
