@@ -1,4 +1,4 @@
-require "CSV"
+require "csv"
 class Tweet < ActiveRecord::Base
 
   URL_REGEX = /(([\w-]+:\/\/?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/)))/i
