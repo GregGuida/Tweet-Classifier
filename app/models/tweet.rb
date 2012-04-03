@@ -1,6 +1,8 @@
+require "CSV"
 class Tweet < ActiveRecord::Base
 
   URL_REGEX = /(([\w-]+:\/\/?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/)))/i
+  SENTIMENTS = {-1 => 'unknown', 0=>'neg', 1=>'pos'}
 
   def self.sanitize ( text )
     #Remove URLs
@@ -15,5 +17,9 @@ class Tweet < ActiveRecord::Base
     .gsub(/\.|,|!|\?|\^|\$|\*|\+|=|%|~|\n/,' ')
     .gsub(/\s\d+\s/,' ')
     .strip
+  end
+
+  def self.create_csv ( tweets )
+    CSV.generate { |csv| tweets.collect{|t| csv << [t.text, SENTIMENTS[t.sentiment] ]} }
   end
 end
