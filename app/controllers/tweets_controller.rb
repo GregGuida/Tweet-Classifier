@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   end
 
   def tagged
-    @tweets = Tweet.all.select{ |t| t.text != '' && ( t.sentiment == 0 || t.sentiment == 1 ) }
+    @tweets = Tweet.where("username != \'null\'")
 
     respond_to do |format|
       format.json { render json: @tweets }

@@ -20,6 +20,6 @@ class Tweet < ActiveRecord::Base
   end
 
   def self.create_csv ( tweets )
-    CSV.generate { |csv| tweets.collect{|t| csv << [t.text, SENTIMENTS[t.sentiment] ]} }
+    CSV.generate { |csv| tweets.each{ |t| csv << [t.text, SENTIMENTS[t.sentiment] ] } }
   end
 end
