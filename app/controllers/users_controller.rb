@@ -38,7 +38,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    authorize
+    before_filter :authorize
+
+    if params[:id] != session[:user_id]
+      render :file => "public/401.html", :status => :unauthorized
+    end
+
     @user = User.find(params[:id])
   end
 
@@ -63,6 +68,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    if params[:id] != session[:user_id]
+      render :file => "public/401.html", :status => :unauthorized
+    end
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to '/', notice: 'User #{@user.username} was successfully created.' }
@@ -78,6 +87,11 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     before_filter :authorize
+
+    if params[:id] != session[:user_id]
+      render :file => "public/401.html", :status => :unauthorized
+    end
+    
     @user = User.find(params[:id])
     @user.destroy
 
