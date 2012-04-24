@@ -6,7 +6,14 @@ class TweetsController < ApplicationController
   end
 
   def tagged
-    @tweets = Tweet.where("username != \'null\'")
+
+    puts "classes == #{params[:classes]}"
+
+    if params[:classes] == '3' || params[:classes] == 3
+      @tweets = Tweet.where("username != \'null\'")
+    else
+      @tweets = Tweet.where("username != \'null\' AND sentiment != -1")
+    end
 
     respond_to do |format|
       format.json { render json: @tweets }
@@ -15,7 +22,7 @@ class TweetsController < ApplicationController
   end
 
   def untagged
-    @tweets = Tweet.all.select{ |t| t.text != '' && t.sentiment == -1 }
+    @tweets = Tweet.select{ |t| t.text != '' && t.sentiment == -1 && t.username != 'null' }
 
     respond_to do |format|
       format.json { render json: @tweets }
